@@ -6,7 +6,7 @@ import FormComponent from '../components/formComponent';
 import ParcelCardComponent from '../components/parcelCardComponent';
 import CameraComponent from '../components/cameraComponent';
 import '../css/form.css';
-import '../css/parcelType.css';
+import '../css/parcelCategory.css';
 import '../css/topnav.css';
 import '../css/bottomnav.css';
 

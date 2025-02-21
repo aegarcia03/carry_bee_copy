@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../css/SignIn.css';
-import API from "../api/api";
+import API from "../api/loginApi";
 
 interface Credentials {
   email: string;

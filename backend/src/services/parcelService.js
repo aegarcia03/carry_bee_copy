@@ -4,7 +4,7 @@ const prisma = require('../../prismaClient');
 // Create Parcel
 const createParcel = async (parcelData) => {
   try {
-    const { item_name, category, quantity, weight, width, length, height, description, user_id } = parcelData;
+    const { item_name, category, quantity, weight, description, user_id } = parcelData;
 
     const categoryDimensions = {
       SMALL: { length: 50, width: 40, height: 50, maxWeight: 20 }, // NSC110 Dio
