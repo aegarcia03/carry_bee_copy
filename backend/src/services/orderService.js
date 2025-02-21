@@ -1,6 +1,8 @@
 const prisma = require('../../prismaClient');
 const { createParcel } = require('./parcelService');
 const { geocodeAddress } = require('./geocodeService');
+const payment = require('../services/paymentService');
+const User = require('../services/userService');
 
 // Base price
 const vehicle_price = {
