@@ -299,10 +299,15 @@ const DestinationBox: React.FC<Props> = () => {
       const pickupLocation = await geocodeAddress(pickupInput);
       const dropoffLocation = await geocodeAddress(dropoffInput);
 
+      const pickupCoordsArray = pickupLocation ? [pickupLocation.lat(), pickupLocation.lng()] : null;
+      const dropoffCoordsArray = dropoffLocation ? [dropoffLocation.lat(), dropoffLocation.lng()] : null;
+
+      console.log("Location added");
+
       setPickup(pickupInput);
       setDropoff(dropoffInput);
-      setPickupCoords(pickupLocation);
-      setDropoffCoords(dropoffLocation);
+      setPickupCoords(pickupCoordsArray);
+      setDropoffCoords(dropoffCoordsArray);
     
     } catch (error) {
       console.error('Error geocoding address:', error);

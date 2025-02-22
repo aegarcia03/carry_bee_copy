@@ -151,8 +151,7 @@ const ParcelCategory = ({ onSelectCategory }) => {
         length: dimensions.length,
       },
     });
-
-    onSelectCategory(dimensions);
+    
     // Use the suggestion function to pick a vehicle based on parcel dimensions.
     // Make sure the dimensions have non-null values
     if (dimensions.length && dimensions.width && dimensions.height) {

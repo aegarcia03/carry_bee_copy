@@ -37,7 +37,7 @@ const CalendarComponent = ({
     const firstDay = new Date(year, month, 1).getDay();
     const prevMonthDays = new Date(year, month, 0).getDate();
 
-    const totalDays = [];
+    const totalDays: CalendarDate[] = [];
 
     // Previous month days
     for (let i = firstDay - 1; i >= 0; i--) {
@@ -89,6 +89,11 @@ const CalendarComponent = ({
     onNextMonth();
   };
 
+  const handleDateSelect = (date: Date) => {
+    console.log(onDateSelect,"handleDateSelect", date)
+    onDateSelect(date)
+  }
+
   return (
     <div className="calendar-section">
       <div className="text-center">
@@ -123,10 +128,10 @@ const CalendarComponent = ({
         </div>
 
         <div className="calendar-grid">
-          {calendarData.map((date, index) => (
+          {calendarData.map((date: CalendarDate, index) => (
             <div
               key={index}
-              onClick={() => date.isCurrentMonth && onDateSelect(date.date)}
+              onClick={() => date.isCurrentMonth && handleDateSelect(date.date)}
               className={`
                 calendar-date-cell
                 ${!date.isCurrentMonth ? 'calendar-date-other-month' : ''}
