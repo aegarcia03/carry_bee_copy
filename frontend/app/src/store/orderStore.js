@@ -17,34 +17,107 @@ const useOrderStore = create((set) => ({
   error: null,
 
   // Sync actions
-  setReceiverName: (recipient) => set({ receiver_name: recipient }),
-  setPickup: (pickup) => set({ pickup_address: pickup }),
-  setPickupCoords: (coords) => set({ pickup_coords: coords }),
-  setDropoff: (dropoff) => set({ dropoff_address: dropoff }),
-  setDropoffCoords: (coords) => set({ dropoff_coords: coords }),
-  setDistance: (distance) => set({ distance }),
-  setSchedule: (schedule) => set({ schedule }),
-  setParcelDetails: (parcelDetails) => set({ parcelDetails }),
-  setTotal: (total) => set({ total }),
-  setSelectedVehicle: (vehicle) => set({ selectedVehicle: vehicle }),
+  setReceiverName: (recipient) => {
+    set((state) => {
+      const newState = { ...state, receiver_name: recipient };
+      console.log(recipient,'setReceiverName:', newState);
+      return newState;
+    });
+  },
+  setPickup: (pickup) => {
+    set((state) => {
+      const newState = { ...state, pickup_address: pickup };
+      console.log(pickup,'setPickup:', newState);
+      return newState;
+    });
+  },
+  setPickupCoords: (coords) => {
+    set((state) => {
+      const newState = { ...state, pickup_coords: coords };
+      console.log(coords,'setPickupCoords:', newState);
+      return newState;
+    });
+  },
+  setDropoff: (dropoff) => {
+    set((state) => {
+      const newState = { ...state, dropoff_address: dropoff };
+      console.log(dropoff,'setDropoff:', newState);
+      return newState;
+    });
+  },
+  setDropoffCoords: (coords) => {
+    set((state) => {
+      const newState = { ...state, dropoff_coords: coords };
+      console.log(coords,'setDropoffCoords:', newState);
+      return newState;
+    });
+  },
+  setDistance: (distance) => {
+    set((state) => {
+      const newState = { ...state, distance };
+      console.log(distance,'setDistance:', newState);
+      return newState;
+    });
+  },
+  setSchedule: (schedule) => {
+    set((state) => {
+      const newState = { ...state, schedule };
+      console.log(schedule,'setSchedule:', newState);
+      return newState;
+    });
+  },
+  setParcelDetails: (parcelDetails) => {
+    set((state) => {
+      const newState = { ...state, parcelDetails };
+      console.log('setParcelDetails:', newState);
+      return newState;
+    });
+  },
+  setTotal: (total) => {
+    set((state) => {
+      const newState = { ...state, total };
+      console.log('setTotal:', newState);
+      return newState;
+    });
+  },
+  setSelectedVehicle: (vehicle) => {
+    set((state) => {
+      const newState = { ...state, selectedVehicle: vehicle };
+      console.log(vehicle,'setSelectedVehicle:', newState);
+      return newState;
+    });
+  },
 
-  updateOrderDetails: (details) => set((state) => ({ ...state, ...details })),
+  updateOrderDetails: (details) => {
+    set((state) => {
+      const newState = { ...state, ...details };
+      console.log(details,'updateOrderDetails:', newState);
+      return newState;
+    });
+  },
 
-  resetOrder: () => set({
-    receiver_name: null,
-    pickup_address: null,
-    pickup_coords: null,
-    dropoff_address: null,
-    dropoff_coords: null,
-    distance: 0,
-    schedule: new Date("2025-02-20T14:30:00Z"),
-    parcelDetails: {},
-    total: null,
-    selectedVehicle: null,
-    user_id: null,
-    status: 'idle',
-    error: null,
-  }),
+  resetOrder: () => {
+    set((state) => {
+      const newState = {
+        ...state,
+        receiver_name: null,
+        pickup_address: null,
+        pickup_coords: null,
+        dropoff_address: null,
+        dropoff_coords: null,
+        distance: 0,
+        schedule: new Date("2025-02-20T14:30:00Z"),
+        parcelDetails: {},
+        total: null,
+        selectedVehicle: null,
+        user_id: null,
+        status: 'idle',
+        error: null,
+      };
+      console.log('resetOrder:', newState);
+      return newState;
+    });
+  },
 
   // Async action to submit the order
   submitOrder: async (orderData) => {

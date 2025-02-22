@@ -89,23 +89,25 @@ const ScheduleComponent = () => {
       return newDate;
     });
   }, []);
-
+  
   const handleDateSelect = useCallback((date: Date) => {
+    console.log("HandleDate", date)
     setSelectedDate(date);
-  }, []);
+  }, [selectedDate]);
 //ombines the selected date and time into a
 // proper Date object and updates the store with setSchedule
   useEffect(() => {
     if (selectedDate) {
+      console.log(selectedDate, "This is from the useEffect")
       const hour24 = timeMode === 'PM' && hour !== '12' ? parseInt(hour) + 12 : parseInt(hour);
       const finalHour = timeMode === 'AM' && hour === '12' ? 0 : hour24;
 
       const scheduledDate = new Date(selectedDate);
       scheduledDate.setHours(finalHour, parseInt(minute), 0, 0);
 
-      setSchedule(scheduledDate); // Update the store with the new schedule
+      setSchedule(scheduledDate); // Update the store with the new schedul
     }
-  }, [selectedDate, hour, minute, timeMode, setSchedule]);
+  }, [selectedDate, hour, minute, timeMode]);
 
   return (
     <div className="schedule-container">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BottomNavComponent from '../components/bottomNavComponent';
 import NavbarComponent from '../components/NavbarComponent';
@@ -7,6 +7,8 @@ import TimePickerComponent from '../components/TimePickerComponent';
 import NextButtonComponent from '../components/nextButton';
 import PrevButtonComponent from '../components/previousButton';
 import '../css/Schedule.css';
+import useOrderStore from '../store/orderStore'; // Import the order store
+
 
 const Schedule: React.FC = () => {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ const Schedule: React.FC = () => {
   const [timeMode, setTimeMode] = useState<'AM' | 'PM'>('AM');
   const [hour, setHour] = useState<string>('02');
   const [minute, setMinute] = useState<string>('00');
+  
+  const setSchedule = useOrderStore((state) => state.setSchedule); // Get setSchedule from the store
 
   const handlePrevMonth = () => {
     setDisplayDate(prevDate => {
@@ -43,6 +47,21 @@ const Schedule: React.FC = () => {
   const handleNextClick = () => {
     navigate('/form'); // Navigate to form page
   };
+
+  //ombines the selected date and time into a
+// proper Date object and updates the store with setSchedule
+useEffect(() => {
+  if (selectedDate) {
+    console.log(selectedDate, "This is from the useEffect")
+    const hour24 = timeMode === 'PM' && hour !== '12' ? parseInt(hour) + 12 : parseInt(hour);
+    const finalHour = timeMode === 'AM' && hour === '12' ? 0 : hour24;
+
+    const scheduledDate = new Date(selectedDate);
+    scheduledDate.setHours(finalHour, parseInt(minute), 0, 0);
+
+    setSchedule(scheduledDate); // Update the store with the new schedul
+  }
+}, [selectedDate, hour, minute, timeMode]);
 
   return (
     <div className="h-screen flex justify-center bg-gray-50">
